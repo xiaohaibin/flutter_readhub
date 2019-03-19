@@ -90,8 +90,8 @@ part 'topic_model.g.dart';
 @JsonSerializable()
   class Result extends Object with _$ResultSerializerMixin{
 
-  @JsonKey(name: 'weight')
-  int weight;
+//  @JsonKey(name: 'weight')
+//  int weight;
 
   @JsonKey(name: 'nerName')
   String nerName;
@@ -111,7 +111,7 @@ part 'topic_model.g.dart';
   @JsonKey(name: 'finance')
   Finance finance;
 
-  Result(this.weight,this.nerName,this.entityId,this.entityName,this.entityType,this.entityUniqueId,this.finance,);
+  Result(this.nerName,this.entityId,this.entityName,this.entityType,this.entityUniqueId,this.finance,);
 
   factory Result.fromJson(Map<String, dynamic> srcJson) => _$ResultFromJson(srcJson);
 

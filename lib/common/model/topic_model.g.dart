@@ -101,7 +101,7 @@ abstract class _$NelDataSerializerMixin {
 
 Result _$ResultFromJson(Map<String, dynamic> json) {
   return new Result(
-      json['weight'] as int,
+//      json['weight'] as int,
       json['nerName'] as String,
       json['entityId'] as String,
       json['entityName'] as String,
@@ -113,7 +113,7 @@ Result _$ResultFromJson(Map<String, dynamic> json) {
 }
 
 abstract class _$ResultSerializerMixin {
-  int get weight;
+//  int get weight;
   String get nerName;
   String get entityId;
   String get entityName;
@@ -121,7 +121,7 @@ abstract class _$ResultSerializerMixin {
   String get entityUniqueId;
   Finance get finance;
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'weight': weight,
+//        'weight': weight,
         'nerName': nerName,
         'entityId': entityId,
         'entityName': entityName,
