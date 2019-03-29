@@ -28,22 +28,26 @@ class _TabBarPageFirstState extends State<TabBarPageFirst>
 
   Widget _builCard(String data, String content) {
     return new GSYCardItem(
-      child: new InkWell(
-        child: new Padding(
-            padding: new EdgeInsets.only(
-                left: 5.0, top: 5.0, right: 10.0, bottom: 8.0),
-            child: new Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  new Container(
-                    child: new Text(
-                      data,
-                      style: GSYConstant.smallSubText,
-                    ),
-                    margin: new EdgeInsets.only(top: 6.0, bottom: 2.0),
-                    alignment: Alignment.topLeft,
-                  ),
-                ])),
+      child: ListTile(
+        onTap: () {
+//          _launchURL(itemUrl, context);
+        },
+        title: Padding(
+          child: Text(
+            data,
+            style: TextStyle(color: Colors.black, fontSize: 15.0),
+          ),
+          padding: EdgeInsets.only(top: 10.0),
+        ),
+        subtitle: Column(
+          children: <Widget>[
+            Padding(
+              child: Text(content,
+                  style: TextStyle(color: Colors.black54, fontSize: 12.0)),
+              padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+            )
+          ],
+        ),
       ),
     );
   }
