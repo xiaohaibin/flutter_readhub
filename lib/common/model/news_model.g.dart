@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'topic_model.dart';
+part of 'news_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-TopicModel _$TopicModelFromJson(Map<String, dynamic> json) {
-  return new TopicModel(
+NewsModel _$NewsModelFromJson(Map<String, dynamic> json) {
+  return new NewsModel(
       (json['data'] as List)
           ?.map((e) =>
               e == null ? null : new Data.fromJson(e as Map<String, dynamic>))
@@ -17,7 +17,7 @@ TopicModel _$TopicModelFromJson(Map<String, dynamic> json) {
       json['totalPages'] as int);
 }
 
-abstract class _$TopicModelSerializerMixin {
+abstract class _$NewsModelSerializerMixin {
   List<Data> get data;
   int get pageSize;
   int get totalItems;
@@ -32,7 +32,7 @@ abstract class _$TopicModelSerializerMixin {
 
 Data _$DataFromJson(Map<String, dynamic> json) {
   return new Data(
-      json['id'] as String,
+      json['id'] as int,
       json['nelData'] == null
           ? null
           : new NelData.fromJson(json['nelData'] as Map<String, dynamic>),
@@ -55,7 +55,7 @@ Data _$DataFromJson(Map<String, dynamic> json) {
 }
 
 abstract class _$DataSerializerMixin {
-  String get id;
+  int get id;
   NelData get nelData;
   List<NewsArray> get newsArray;
   String get createdAt;
@@ -101,6 +101,7 @@ abstract class _$NelDataSerializerMixin {
 
 Result _$ResultFromJson(Map<String, dynamic> json) {
   return new Result(
+      json['weight'] as int,
       json['nerName'] as String,
       json['entityId'] as String,
       json['entityName'] as String,
@@ -112,6 +113,7 @@ Result _$ResultFromJson(Map<String, dynamic> json) {
 }
 
 abstract class _$ResultSerializerMixin {
+  int get weight;
   String get nerName;
   String get entityId;
   String get entityName;
@@ -119,6 +121,7 @@ abstract class _$ResultSerializerMixin {
   String get entityUniqueId;
   Finance get finance;
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'weight': weight,
         'nerName': nerName,
         'entityId': entityId,
         'entityName': entityName,

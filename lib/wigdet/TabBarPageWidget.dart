@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_readhub/page/TabBarPageNews.dart';
 import 'package:flutter_readhub/wigdet/GSYTabBarWidget.dart';
 import 'package:flutter_readhub/page/TabBarPageFirst.dart';
 
@@ -38,7 +39,7 @@ class _TabBarPageWidgetState extends State<TabBarPageWidget> {
   _renderPage() {
     return [
       new TabBarPageFirst(),
-      new TabBarPageFirst(),
+      new TabBarPageNews(),
       new TabBarPageFirst(),
       new TabBarPageFirst(),
     ];
