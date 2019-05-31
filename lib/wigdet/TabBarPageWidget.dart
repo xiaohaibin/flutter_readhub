@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_readhub/page/TabBarPageBlockchain.dart';
 import 'package:flutter_readhub/page/TabBarPageNews.dart';
+import 'package:flutter_readhub/page/TabBarPageDeveloper.dart';
 import 'package:flutter_readhub/wigdet/GSYTabBarWidget.dart';
-import 'package:flutter_readhub/page/TabBarPageFirst.dart';
+import 'package:flutter_readhub/page/TabBarPageHotTopic.dart';
 
 class TabBarPageWidget extends StatefulWidget {
   @override
@@ -38,23 +40,29 @@ class _TabBarPageWidgetState extends State<TabBarPageWidget> {
 
   _renderPage() {
     return [
-      new TabBarPageFirst(),
+      new TabBarPageHotTopic(),
       new TabBarPageNews(),
-      new TabBarPageFirst(),
-      new TabBarPageFirst(),
+      new TabBarPageDeveloper(),
+      new TabBarPageBlockchain(),
     ];
   }
 
   @override
   Widget build(BuildContext context) {
-    return new GSYTabBarWidget(
-      type: GSYTabBarWidget.TOP_TAB,
-      tabItems: _renderTab(),
-      tabViews: _renderPage(),
-      topPageControl: topPageControl,
-      backgroundColor: Colors.lightBlue,
-      indicatorColor: Colors.white,
-      title: new Text("ReadHub"),
+    return new Scaffold(
+      body: new GSYTabBarWidget(
+        type: GSYTabBarWidget.TOP_TAB,
+        tabItems: _renderTab(),
+        tabViews: _renderPage(),
+        topPageControl: topPageControl,
+        backgroundColor: Colors.lightBlue,
+        indicatorColor: Colors.white,
+        title: new Text("ReadHub"),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: null,
+        child: Icon(Icons.arrow_upward),
+      ),
     );
   }
 }

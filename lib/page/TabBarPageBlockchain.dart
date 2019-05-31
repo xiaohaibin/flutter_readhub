@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_readhub/common/style/GSYStyle.dart';
-import 'package:flutter_readhub/net/HttpUtils.dart';
+import 'package:flutter_readhub/common/model/news_model.dart';
 import 'package:flutter_readhub/net/Api.dart';
-import 'package:flutter_readhub/common/model/topic_model.dart';
-import 'dart:convert';
-
+import 'package:flutter_readhub/net/HttpUtils.dart';
 import 'package:flutter_readhub/wigdet/GSYCardItem.dart';
 
-class TabBarPageFirst extends StatefulWidget {
+/**
+ * 区块链
+ */
+class TabBarPageBlockchain extends StatefulWidget {
   @override
-  _TabBarPageFirstState createState() => _TabBarPageFirstState();
+  _TabBarPageNews createState() => _TabBarPageNews();
 }
 
-class _TabBarPageFirstState extends State<TabBarPageFirst>
-    with AutomaticKeepAliveClientMixin {
+class _TabBarPageNews extends State<TabBarPageBlockchain>
+    with AutomaticKeepAliveClientMixin<TabBarPageBlockchain> {
   List<Data> data = new List();
 
   Widget _buildSuggestions() {
@@ -60,10 +60,10 @@ class _TabBarPageFirstState extends State<TabBarPageFirst>
     super.build(context); // See AutomaticKeepAliveClientMixin.
     return new Scaffold(
       body: _buildSuggestions(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _getData,
-        child: Icon(Icons.arrow_upward),
-      ), // This
+//      floatingActionButton: FloatingActionButton(
+//        onPressed: _getData,
+//        child: Icon(Icons.arrow_upward),
+//      ), // This
     );
   }
 
@@ -74,9 +74,9 @@ class _TabBarPageFirstState extends State<TabBarPageFirst>
   }
 
   _getData() async {
-    var res = await HttpManager.netFetch(Api.HOST + "/topic", null, null, null);
+    var res = await HttpManager.netFetch(Api.HOST + "/blockchain", null, null, null);
     setState(() {
-      TopicModel topicModel = TopicModel.fromJson(res.data);
+      NewsModel topicModel = NewsModel.fromJson(res.data);
       data = topicModel.data;
     });
   }

@@ -5,14 +5,14 @@ import 'package:flutter_readhub/net/HttpUtils.dart';
 import 'package:flutter_readhub/wigdet/GSYCardItem.dart';
 
 /**
- * 科技动态
+ * 开发者
  */
-class TabBarPageNews extends StatefulWidget {
+class TabBarPageDeveloper extends StatefulWidget {
   @override
   _TabBarPageNews createState() => _TabBarPageNews();
 }
 
-class _TabBarPageNews extends State<TabBarPageNews>
+class _TabBarPageNews extends State<TabBarPageDeveloper>
     with AutomaticKeepAliveClientMixin {
   List<Data> data = new List();
 
@@ -74,7 +74,7 @@ class _TabBarPageNews extends State<TabBarPageNews>
   }
 
   _getData() async {
-    var res = await HttpManager.netFetch(Api.HOST + "/news", null, null, null);
+    var res = await HttpManager.netFetch(Api.HOST + "/technews", null, null, null);
     setState(() {
       NewsModel topicModel = NewsModel.fromJson(res.data);
       data = topicModel.data;
