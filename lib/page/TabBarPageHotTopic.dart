@@ -35,7 +35,6 @@ class _TabBarPageHotTopicState extends State<TabBarPageHotTopic>
   }
 
   Widget _builCard(int index,String title, String content) {
-    print("====data==="+pullLoadWidgetControl.dataList.length.toString());
     if (pullLoadWidgetControl.dataList.length == 0) {
       return null;
     }
@@ -66,7 +65,6 @@ class _TabBarPageHotTopicState extends State<TabBarPageHotTopic>
   }
 
   Widget _builCardTo(int index) {
-    print("====data==="+pullLoadWidgetControl.dataList.length.toString());
     if (pullLoadWidgetControl.dataList.length == 0) {
       return null;
     }
@@ -117,13 +115,6 @@ class _TabBarPageHotTopicState extends State<TabBarPageHotTopic>
     );
   }
 
-//
-//  @override
-//  void initState() {
-//    super.initState();
-//    _getData();
-//  }
-
   @override
   bool get isRefreshFirst => true;
 
@@ -138,24 +129,27 @@ class _TabBarPageHotTopicState extends State<TabBarPageHotTopic>
   }
 
   _getData() async {
-    return await HttpManager.netFetch(Api.HOST + "/topic", null, null, null);
-//    setState(() {
-//      TopicModel topicModel = TopicModel.fromJson(res.data);
-//      data = topicModel.data;
-//      lastCuror = data.last.order.toString();
-//    });
+    var res=await HttpManager.netFetch(Api.HOST + "/topic", null, null, null);
+    setState(() {
+      TopicModel topicModel = TopicModel.fromJson(res.data);
+      data = topicModel.data;
+      lastCuror = data.last.order.toString();
+      clearData();
+      pullLoadWidgetControl.dataList.addAll(topicModel.data);
+    });
   }
 
   _getNewsMore(String lastCursor, int pageSize) async {
-    return await HttpManager.netFetch(
+    var res=await HttpManager.netFetch(
         Api.HOST + "/topic" + "?lastCursor=" + lastCursor + "&pagesize=10",
         null,
         null,
         null);
-//    setState(() {
-//      TopicModel topicModel = TopicModel.fromJson(res.data);
-//      data.addAll(topicModel.data);
-//      lastCuror = data.last.order.toString();
-//    });
+    setState(() {
+      TopicModel topicModel = TopicModel.fromJson(res.data);
+      data.addAll(topicModel.data);
+      lastCuror = data.last.order.toString();
+      pullLoadWidgetControl.dataList.addAll(topicModel.data);
+    });
   }
 }

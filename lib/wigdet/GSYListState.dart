@@ -35,11 +35,14 @@ mixin GSYListState<T extends StatefulWidget>
 
   @protected
   resolveRefreshResult(res) {
-    if (res != null && res.result) {
+    print("resolveRefreshResult in" + res.toString());
+    if (res != null) {
       pullLoadWidgetControl.dataList.clear();
       if (isShow) {
         setState(() {
           pullLoadWidgetControl.dataList.addAll(res.data);
+          print("pullLoadWidgetControl.dataList size:" +
+              pullLoadWidgetControl.dataList.length.toString());
         });
       }
     }
@@ -61,13 +64,14 @@ mixin GSYListState<T extends StatefulWidget>
 
   @protected
   Future<Null> onLoadMore() async {
+    print("isLoading:" + isLoading.toString());
     if (isLoading) {
       return null;
     }
     isLoading = true;
     page++;
     var res = await requestLoadMore();
-    if (res != null && res.result) {
+    if (res != null) {
       if (isShow) {
         setState(() {
           pullLoadWidgetControl.dataList.addAll(res.data);
@@ -83,9 +87,10 @@ mixin GSYListState<T extends StatefulWidget>
   resolveDataResult(res) {
     if (isShow) {
       setState(() {
-        pullLoadWidgetControl.needLoadMore = (res != null &&
-            res.data != null &&
-            res.data.length == Config.PAGE_SIZE);
+        pullLoadWidgetControl.needLoadMore=true;
+//        pullLoadWidgetControl.needLoadMore = (res != null &&
+//            res.data != null &&
+//            res.data.length == Config.PAGE_SIZE);
       });
     }
   }
@@ -127,6 +132,7 @@ mixin GSYListState<T extends StatefulWidget>
     super.initState();
     pullLoadWidgetControl.needHeader = needHeader;
     pullLoadWidgetControl.dataList = getDataList;
+    print("isShow:" + isShow.toString());
     if (pullLoadWidgetControl.dataList.length == 0 && isRefreshFirst) {
       showRefreshLoading();
     }
