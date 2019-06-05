@@ -66,6 +66,13 @@ class CommonUtils {
     }
   }
 
+  /**
+   * 将时间转换为时间戳
+   */
+  static String getTimeStamp(String time) {
+    return DateTime.parse(time).toUtc().millisecondsSinceEpoch.toString();
+  }
+
   static getLocalPath() async {
     Directory appDir;
     if (Platform.isIOS) {
