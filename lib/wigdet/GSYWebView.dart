@@ -15,11 +15,11 @@ class GSYWebView extends StatelessWidget {
 
   _renderTitle() {
     if (url == null || url.length == 0) {
-      return new Text(title);
+      return new Text("");
     }
     optionControl.url = url;
     return new Row(children: [
-      new Expanded(child: new Container()),
+      new Expanded(child: new Text(title)),
       GSYCommonOptionWidget(optionControl),
     ]);
   }

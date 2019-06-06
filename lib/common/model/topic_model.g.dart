@@ -33,22 +33,24 @@ abstract class _$TopicModelSerializerMixin {
 Data _$DataFromJson(Map<String, dynamic> json) {
   return new Data(
       json['id'] as String,
-      json['nelData'] == null
-          ? null
-          : new NelData.fromJson(json['nelData'] as Map<String, dynamic>),
       (json['newsArray'] as List)
           ?.map((e) => e == null
               ? null
               : new NewsArray.fromJson(e as Map<String, dynamic>))
           ?.toList(),
       json['createdAt'] as String,
-      json['eventData'] as List,
+      (json['eventData'] as List)
+          ?.map((e) => e == null
+              ? null
+              : new EventData.fromJson(e as Map<String, dynamic>))
+          ?.toList(),
       json['publishDate'] as String,
       json['summary'] as String,
       json['title'] as String,
       json['updatedAt'] as String,
       json['timeline'] as String,
       json['order'] as int,
+      json['hasInstantView'] as bool,
       json['extra'] == null
           ? null
           : new Extra.fromJson(json['extra'] as Map<String, dynamic>));
@@ -56,20 +58,19 @@ Data _$DataFromJson(Map<String, dynamic> json) {
 
 abstract class _$DataSerializerMixin {
   String get id;
-  NelData get nelData;
   List<NewsArray> get newsArray;
   String get createdAt;
-  List<dynamic> get eventData;
+  List<EventData> get eventData;
   String get publishDate;
   String get summary;
   String get title;
   String get updatedAt;
   String get timeline;
   int get order;
+  bool get hasInstantView;
   Extra get extra;
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
-        'nelData': nelData,
         'newsArray': newsArray,
         'createdAt': createdAt,
         'eventData': eventData,
@@ -79,64 +80,9 @@ abstract class _$DataSerializerMixin {
         'updatedAt': updatedAt,
         'timeline': timeline,
         'order': order,
+        'hasInstantView': hasInstantView,
         'extra': extra
       };
-}
-
-NelData _$NelDataFromJson(Map<String, dynamic> json) {
-  return new NelData(
-      json['state'] as bool,
-      (json['result'] as List)
-          ?.map((e) =>
-              e == null ? null : new Result.fromJson(e as Map<String, dynamic>))
-          ?.toList());
-}
-
-abstract class _$NelDataSerializerMixin {
-  bool get state;
-  List<Result> get result;
-  Map<String, dynamic> toJson() =>
-      <String, dynamic>{'state': state, 'result': result};
-}
-
-Result _$ResultFromJson(Map<String, dynamic> json) {
-  return new Result(
-      json['nerName'] as String,
-      json['entityId'] as String,
-      json['entityName'] as String,
-      json['entityType'] as String,
-      json['entityUniqueId'] as String,
-      json['finance'] == null
-          ? null
-          : new Finance.fromJson(json['finance'] as Map<String, dynamic>));
-}
-
-abstract class _$ResultSerializerMixin {
-  String get nerName;
-  String get entityId;
-  String get entityName;
-  String get entityType;
-  String get entityUniqueId;
-  Finance get finance;
-  Map<String, dynamic> toJson() => <String, dynamic>{
-        'nerName': nerName,
-        'entityId': entityId,
-        'entityName': entityName,
-        'entityType': entityType,
-        'entityUniqueId': entityUniqueId,
-        'finance': finance
-      };
-}
-
-Finance _$FinanceFromJson(Map<String, dynamic> json) {
-  return new Finance(json['code'] as String, json['name'] as String);
-}
-
-abstract class _$FinanceSerializerMixin {
-  String get code;
-  String get name;
-  Map<String, dynamic> toJson() =>
-      <String, dynamic>{'code': code, 'name': name};
 }
 
 NewsArray _$NewsArrayFromJson(Map<String, dynamic> json) {
@@ -175,6 +121,42 @@ abstract class _$NewsArraySerializerMixin {
         'publishDate': publishDate,
         'language': language,
         'statementType': statementType
+      };
+}
+
+EventData _$EventDataFromJson(Map<String, dynamic> json) {
+  return new EventData(
+      json['id'] as int,
+      json['topicId'] as String,
+      json['eventType'] as int,
+      json['entityId'] as String,
+      json['entityType'] as String,
+      json['entityName'] as String,
+      json['state'] as int,
+      json['createdAt'] as String,
+      json['updatedAt'] as String);
+}
+
+abstract class _$EventDataSerializerMixin {
+  int get id;
+  String get topicId;
+  int get eventType;
+  String get entityId;
+  String get entityType;
+  String get entityName;
+  int get state;
+  String get createdAt;
+  String get updatedAt;
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'id': id,
+        'topicId': topicId,
+        'eventType': eventType,
+        'entityId': entityId,
+        'entityType': entityType,
+        'entityName': entityName,
+        'state': state,
+        'createdAt': createdAt,
+        'updatedAt': updatedAt
       };
 }
 

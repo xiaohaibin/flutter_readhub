@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_readhub/common/style/GSYStyle.dart';
+import 'package:flutter_readhub/common/utils/CommonUtils.dart';
 import 'package:flutter_readhub/net/HttpUtils.dart';
 import 'package:flutter_readhub/net/Api.dart';
 import 'package:flutter_readhub/common/model/topic_model.dart';
@@ -28,13 +29,13 @@ class _TabBarPageHotTopicState extends State<TabBarPageHotTopic>
     return new ListView.builder(
 //      padding: const EdgeInsets.all(8.0),
       itemBuilder: (context, i) {
-        return _builCard(i,data[i].title, data[i].summary);
+        return _builCard(i, data[i].title, data[i].summary);
       },
       itemCount: data.length,
     );
   }
 
-  Widget _builCard(int index,String title, String content) {
+  Widget _builCard(int index, String title, String content) {
     if (pullLoadWidgetControl.dataList.length == 0) {
       return null;
     }
@@ -72,7 +73,10 @@ class _TabBarPageHotTopicState extends State<TabBarPageHotTopic>
     return new GSYCardItem(
       child: ListTile(
         onTap: () {
-//          _launchURL(itemUrl, context);
+          if (data[index].newsArray != null) {
+            CommonUtils.launchWebView(context, data[index].newsArray[0].title,
+                data[index].newsArray[0].url);
+          }
         },
         title: Padding(
           child: Text(
@@ -129,7 +133,7 @@ class _TabBarPageHotTopicState extends State<TabBarPageHotTopic>
   }
 
   _getData() async {
-    var res=await HttpManager.netFetch(Api.HOST + "/topic", null, null, null);
+    var res = await HttpManager.netFetch(Api.HOST + "/topic", null, null, null);
     setState(() {
       TopicModel topicModel = TopicModel.fromJson(res.data);
       data = topicModel.data;
@@ -140,7 +144,7 @@ class _TabBarPageHotTopicState extends State<TabBarPageHotTopic>
   }
 
   _getNewsMore(String lastCursor, int pageSize) async {
-    var res=await HttpManager.netFetch(
+    var res = await HttpManager.netFetch(
         Api.HOST + "/topic" + "?lastCursor=" + lastCursor + "&pagesize=10",
         null,
         null,

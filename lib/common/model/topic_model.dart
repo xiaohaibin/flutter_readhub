@@ -1,10 +1,10 @@
-import 'package:json_annotation/json_annotation.dart'; 
-  
+import 'package:json_annotation/json_annotation.dart';
+
 part 'topic_model.g.dart';
 
 
 @JsonSerializable()
-  class TopicModel extends Object with _$TopicModelSerializerMixin{
+class TopicModel extends Object with _$TopicModelSerializerMixin{
 
   @JsonKey(name: 'data')
   List<Data> data;
@@ -24,15 +24,12 @@ part 'topic_model.g.dart';
 
 }
 
-  
+
 @JsonSerializable()
-  class Data extends Object with _$DataSerializerMixin{
+class Data extends Object with _$DataSerializerMixin{
 
   @JsonKey(name: 'id')
   String id;
-
-  @JsonKey(name: 'nelData')
-  NelData nelData;
 
   @JsonKey(name: 'newsArray')
   List<NewsArray> newsArray;
@@ -41,7 +38,7 @@ part 'topic_model.g.dart';
   String createdAt;
 
   @JsonKey(name: 'eventData')
-  List<dynamic> eventData;
+  List<EventData> eventData;
 
   @JsonKey(name: 'publishDate')
   String publishDate;
@@ -61,81 +58,21 @@ part 'topic_model.g.dart';
   @JsonKey(name: 'order')
   int order;
 
+  @JsonKey(name: 'hasInstantView')
+  bool hasInstantView;
+
   @JsonKey(name: 'extra')
   Extra extra;
 
-  Data(this.id,this.nelData,this.newsArray,this.createdAt,this.eventData,this.publishDate,this.summary,this.title,this.updatedAt,this.timeline,this.order,this.extra,);
+  Data(this.id,this.newsArray,this.createdAt,this.eventData,this.publishDate,this.summary,this.title,this.updatedAt,this.timeline,this.order,this.hasInstantView,this.extra,);
 
   factory Data.fromJson(Map<String, dynamic> srcJson) => _$DataFromJson(srcJson);
 
 }
 
-  
+
 @JsonSerializable()
-  class NelData extends Object with _$NelDataSerializerMixin{
-
-  @JsonKey(name: 'state')
-  bool state;
-
-  @JsonKey(name: 'result')
-  List<Result> result;
-
-  NelData(this.state,this.result,);
-
-  factory NelData.fromJson(Map<String, dynamic> srcJson) => _$NelDataFromJson(srcJson);
-
-}
-
-  
-@JsonSerializable()
-  class Result extends Object with _$ResultSerializerMixin{
-
-//  @JsonKey(name: 'weight')
-//  int weight;
-
-  @JsonKey(name: 'nerName')
-  String nerName;
-
-  @JsonKey(name: 'entityId')
-  String entityId;
-
-  @JsonKey(name: 'entityName')
-  String entityName;
-
-  @JsonKey(name: 'entityType')
-  String entityType;
-
-  @JsonKey(name: 'entityUniqueId')
-  String entityUniqueId;
-
-  @JsonKey(name: 'finance')
-  Finance finance;
-
-  Result(this.nerName,this.entityId,this.entityName,this.entityType,this.entityUniqueId,this.finance,);
-
-  factory Result.fromJson(Map<String, dynamic> srcJson) => _$ResultFromJson(srcJson);
-
-}
-
-  
-@JsonSerializable()
-  class Finance extends Object with _$FinanceSerializerMixin{
-
-  @JsonKey(name: 'code')
-  String code;
-
-  @JsonKey(name: 'name')
-  String name;
-
-  Finance(this.code,this.name,);
-
-  factory Finance.fromJson(Map<String, dynamic> srcJson) => _$FinanceFromJson(srcJson);
-
-}
-
-  
-@JsonSerializable()
-  class NewsArray extends Object with _$NewsArraySerializerMixin{
+class NewsArray extends Object with _$NewsArraySerializerMixin{
 
   @JsonKey(name: 'id')
   int id;
@@ -173,9 +110,46 @@ part 'topic_model.g.dart';
 
 }
 
-  
+
 @JsonSerializable()
-  class Extra extends Object with _$ExtraSerializerMixin{
+class EventData extends Object with _$EventDataSerializerMixin{
+
+  @JsonKey(name: 'id')
+  int id;
+
+  @JsonKey(name: 'topicId')
+  String topicId;
+
+  @JsonKey(name: 'eventType')
+  int eventType;
+
+  @JsonKey(name: 'entityId')
+  String entityId;
+
+  @JsonKey(name: 'entityType')
+  String entityType;
+
+  @JsonKey(name: 'entityName')
+  String entityName;
+
+  @JsonKey(name: 'state')
+  int state;
+
+  @JsonKey(name: 'createdAt')
+  String createdAt;
+
+  @JsonKey(name: 'updatedAt')
+  String updatedAt;
+
+  EventData(this.id,this.topicId,this.eventType,this.entityId,this.entityType,this.entityName,this.state,this.createdAt,this.updatedAt,);
+
+  factory EventData.fromJson(Map<String, dynamic> srcJson) => _$EventDataFromJson(srcJson);
+
+}
+
+
+@JsonSerializable()
+class Extra extends Object with _$ExtraSerializerMixin{
 
   @JsonKey(name: 'instantView')
   bool instantView;
@@ -186,4 +160,4 @@ part 'topic_model.g.dart';
 
 }
 
-  
+

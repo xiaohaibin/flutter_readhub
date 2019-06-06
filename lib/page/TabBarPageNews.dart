@@ -30,7 +30,6 @@ class _TabBarPageNews extends State<TabBarPageNews>
     return new GSYCardItem(
       child: ListTile(
         onTap: () {
-          print("url:"+data[index].url);
           CommonUtils.launchWebView(context, data[index].title, data[index].url);
         },
         title: Padding(

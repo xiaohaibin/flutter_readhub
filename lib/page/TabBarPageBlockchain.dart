@@ -87,7 +87,7 @@ class _TabBarPageBlockchain extends State<TabBarPageBlockchain>
     return new GSYCardItem(
       child: ListTile(
         onTap: () {
-//          _launchURL(itemUrl, context);
+          CommonUtils.launchWebView(context, data[index].title, data[index].url);
         },
         title: Padding(
           child: Text(
